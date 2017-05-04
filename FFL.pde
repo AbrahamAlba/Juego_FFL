@@ -144,22 +144,24 @@ if(pantalla==2)
   if(textArma==3){
   image(dfcr,345,80);
   atkdef.play();
-  //atkdef.rewind();
   }
   if(textArma==4){
   image(impactr,375,v=v+20);
   }
   if(textArma==5){
   image(dfcr,345,80);
+  atkdef.play();
   }
   if(textArma==6){
   image(medr,345,80);
   }
   if(textArma==7){
   image(impactr,375,v=v+20);
+  atkmed.play();
   }
   if(textArma==8){
   image(dfcr,345,80);
+  atkdef.play();
   }
   if(textArma==9){
   image(medr,345,80);
@@ -347,7 +349,7 @@ void intro(){
  }
  
 if (keyPressed){
-  if (key == ENTER)
+  if (key == ENTER){
     t=t+255;
     
     if(i>=100) 
@@ -356,6 +358,7 @@ if (keyPressed){
       t=255;
     pantalla=1;
     i=0;
+    }
     }
 }
 }
@@ -784,6 +787,7 @@ void mouseClicked(){
       }
       
     if(oatk>0 && oatk<=1 && Espada.mag>0 && arma==2 && u>=80){
+      textArma=0;
       Osc.mag = Osc.mag-1;
       u=0;
       v=160;
@@ -794,6 +798,7 @@ void mouseClicked(){
     else
     
     if(oatk>0 && oatk<=1 && Cetro.mag>1 && arma==1 && u>=80){
+      textArma=0;
       Osc.mag = Osc.mag-1;
       u=0;
       v=160;
@@ -804,6 +809,7 @@ void mouseClicked(){
     else
     
     if(oatk>0 && oatk<=1 && Lanza.mag>1 && arma==3 && u>=80){
+      textArma=0;
       Osc.mag = Osc.mag-1;
       u=0;
       v=160;
@@ -814,6 +820,7 @@ void mouseClicked(){
     else
     
     if(oatk>1 && oatk<=2 && Espada.mag>0 && arma==2 && u>=80){
+      textArma=0;
       Osc.mag = Osc.mag-2;
       odef=1;
       def=1;
@@ -826,6 +833,7 @@ void mouseClicked(){
     else
     
     if(oatk>1 && oatk<=2 && Cetro.mag>1 && arma==1 && u>=80){
+      textArma=0;
       Osc.mag = Osc.mag-2;
       odef=1;
       def=1;
@@ -838,6 +846,7 @@ void mouseClicked(){
     else
     
     if(oatk>1 && oatk<=2 && Lanza.mag>1 && arma==3 && u>=80){
+      textArma=0;
       Osc.mag = Osc.mag-2;
       odef=1;
       def=1;
@@ -850,6 +859,7 @@ void mouseClicked(){
     else
     
     if(oatk>2 && oatk<=3 && Espada.mag>0 && arma==2 && Osc.mag<2 && u>=80){
+      textArma=0;
       Osc.mag += (6 - Osc.mag);
       def=1;
       u=0;
@@ -861,6 +871,7 @@ void mouseClicked(){
     else
     
     if(oatk>2 && oatk<=3 && Cetro.mag>1 && arma==1 && Osc.mag<2 && u>=80){
+      textArma=0;
       Osc.mag += (6 - Osc.mag);
       def=1;
       u=0;
@@ -871,6 +882,7 @@ void mouseClicked(){
     else
     
     if(oatk>2 && oatk<=3 && Lanza.mag>1 && arma==3 && Osc.mag<2 && u>=80){
+      textArma=0;
       Osc.mag += (6 - Osc.mag);
       def=1;
       u=0;
@@ -893,8 +905,10 @@ void mouseClicked(){
            atkmed.rewind();
        }
              
-       if(oatk>0 && oatk<=1 && Osc.mag>0 && Espada.mag<6 && u>=80){
-         Espada.vit = jugAvit - Osc.atk;
+       if(oatk>0 && oatk<=1.5 && Osc.mag>0 && Espada.mag<6 && arma==2 && u>=80){
+         textArma=0;
+         v=160;
+         Espada.vit = Espada.vit - Osc.atk;
          
          if(Espada.vit <=0){
           pantalla=3;
@@ -908,10 +922,10 @@ void mouseClicked(){
          
          else
          
-         if(oatk>0 && oatk<=1 && Osc.mag>0 && Cetro.mag<8 && u>=80){
-         Lanza.vit = jugAvit - Osc.atk;
-         Espada.vit = jugAvit - Osc.atk;
-         Cetro.vit = jugAvit - Osc.atk;
+         if(oatk>0 && oatk<=1.5 && Osc.mag>0 && Cetro.mag<8 && arma==1 && u>=80){
+           textArma=0;
+           v=160;
+         Cetro.vit =- Osc.atk;
          
          if(Cetro.vit <=0){
           pantalla=3;
@@ -925,8 +939,10 @@ void mouseClicked(){
          
          else
          
-         if(oatk>0 && oatk<=1 && Osc.mag>0 && Lanza.mag<4 && u>=80){
-         Lanza.vit = jugAvit - Osc.atk;
+         if(oatk>0 && oatk<=1.5 && Osc.mag>0 && Lanza.mag<4 && arma==3 && u>=80){
+           textArma=0;
+           v=160;
+         Lanza.vit =- Osc.atk;
          
          if(Lanza.vit <=0){
           pantalla=3;
@@ -940,9 +956,11 @@ void mouseClicked(){
          
          else
          
-         if(oatk>1 && oatk<=2 && Osc.mag>0 && Espada.mag<6 && u>=80){
+         if(oatk>1.5 && oatk<=3 && Osc.mag>0 && Espada.mag<6 && arma==2 && u>=80){
+           textArma=0;
          odef=1;
          Espada.mag += (6-jugAmag);
+         Osc.mag = Osc.mag-2;
          Espada.vit += random(1,3);
          u=0;
          textArma=8;
@@ -951,9 +969,11 @@ void mouseClicked(){
          
          else
 
-         if(oatk>1 && oatk<=2 && Osc.mag>0 && Cetro.mag<8 && u>=80){
+         if(oatk>1.5 && oatk<=3 && Osc.mag>0 && Cetro.mag<8 && arma==1 && u>=80){
+           textArma=0;
          odef=1;
          Cetro.mag += (8-jugAmag);
+         Osc.mag = Osc.mag-2;
          Cetro.vit += random(1,3);
          u=0;
          textArma=8;
@@ -962,9 +982,10 @@ void mouseClicked(){
          
          else
          
-         if(oatk>1 && oatk<=2 && Osc.mag>0 && Lanza.mag<4 && u>=80){
+         if(oatk>1.5 && oatk<=3 && Osc.mag>0 && Lanza.mag<4 && arma==3 && u>=80){
          odef=1;
          Lanza.mag += (4-jugAmag);
+         Osc.mag = Osc.mag-2;
          Lanza.vit += random(1,3);
          u=0;
          textArma=8;
@@ -973,7 +994,7 @@ void mouseClicked(){
          
          else
          
-         if(oatk>=0 && oatk<=3 &&Espada.mag<6 && Osc.mag<2 && u>=80){
+         if(oatk>=0 && oatk<=3 && Espada.mag<6 && Osc.mag<2 && arma==2 && u>=80){
          Espada.mag += (6-jugAmag);
          Osc.mag += (6 - Osc.mag);
          Espada.vit += random(1,3);
@@ -984,7 +1005,7 @@ void mouseClicked(){
 
          else
          
-         if(oatk>=0 && oatk<=3 &&Cetro.mag<8 && Osc.mag<2 && u>=80){
+         if(oatk>=0 && oatk<=3 &&Cetro.mag<8 && Osc.mag<2 && arma==1 && u>=80){
          Cetro.mag += (8-jugAmag);
          Osc.mag += (6 - Osc.mag);
          Cetro.vit += random(1,3);
