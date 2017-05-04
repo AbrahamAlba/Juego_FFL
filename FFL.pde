@@ -820,8 +820,28 @@ void mouseClicked(){
     
     if(oatk>2 && oatk<=3 && Espada.mag>0 && arma==2 && Osc.mag<2 && u>=80){
       Osc.mag += (6 - Osc.mag);
+      def=1;
       u=0;
-      u=u-1;
+      textArma=6;
+      def=0;
+    }
+    
+    else
+    
+    if(oatk>2 && oatk<=3 && Cetro.mag>1 && arma==1 && Osc.mag<2 && u>=80){
+      Osc.mag += (6 - Osc.mag);
+      def=1;
+      u=0;
+      textArma=6;
+      def=0;
+    }
+    
+    else
+    
+    if(oatk>2 && oatk<=3 && Lanza.mag>1 && arma==3 && Osc.mag<2 && u>=80){
+      Osc.mag += (6 - Osc.mag);
+      def=1;
+      u=0;
       textArma=6;
       def=0;
     }
@@ -831,21 +851,47 @@ void mouseClicked(){
     
      if(mouseX>=300 && mouseX<=330 && mouseY >=590 && mouseY<=605 && u>=80){
              
-       if(oatk>0 && oatk<=1 && Osc.mag>0 && Espada.mag<6 && u>=120){
+       if(oatk>0 && oatk<=1 && Osc.mag>0 && Espada.mag<6 && u>=80){
+         Espada.vit = jugAvit - Osc.atk;
+         
+         if(Espada.vit <=0){
+          pantalla=3;
+          resultado=1;
+          }
+         Espada.mag += (6-jugAmag);
+         Espada.vit += random(1,3);
+         u=0;
+         textArma=7;
+         }
+         
+         else
+         
+         if(oatk>0 && oatk<=1 && Osc.mag>0 && Cetro.mag<8 && u>=80){
          Lanza.vit = jugAvit - Osc.atk;
          Espada.vit = jugAvit - Osc.atk;
          Cetro.vit = jugAvit - Osc.atk;
          
-         if(Lanza.vit <=0 && Espada.vit <=0 && Cetro.vit <=0){
+         if(Cetro.vit <=0){
+          pantalla=3;
+          resultado=1;
+          }
+         Cetro.mag += (8-jugAmag);
+         Cetro.vit += random(1,3);
+         u=0;
+         textArma=7;
+         }
+         
+         else
+         
+         if(oatk>0 && oatk<=1 && Osc.mag>0 && Lanza.mag<4 && u>=80){
+         Lanza.vit = jugAvit - Osc.atk;
+         
+         if(Lanza.vit <=0){
           pantalla=3;
           resultado=1;
           }
          Lanza.mag += (4-jugAmag);
-         Espada.mag += (6-jugAmag);
-         Cetro.mag += (8-jugAmag);
          Lanza.vit += random(1,3);
-         Espada.vit += random(1,3);
-         Cetro.vit += random(1,3);
          u=0;
          textArma=7;
          }
@@ -854,11 +900,18 @@ void mouseClicked(){
          
          if(oatk>1 && oatk<=2 && Osc.mag>0 && Espada.mag<6 && u>=80){
          odef=1;
-         Lanza.mag += (4-jugAmag);
          Espada.mag += (6-jugAmag);
-         Cetro.mag += (8-jugAmag);
-         Lanza.vit += random(1,3);
          Espada.vit += random(1,3);
+         u=0;
+         textArma=8;
+         odef=0;
+         }
+         
+         else
+
+         if(oatk>1 && oatk<=2 && Osc.mag>0 && Cetro.mag<8 && u>=80){
+         odef=1;
+         Cetro.mag += (8-jugAmag);
          Cetro.vit += random(1,3);
          u=0;
          textArma=8;
@@ -867,19 +920,47 @@ void mouseClicked(){
          
          else
          
-         if(oatk>=0 && oatk<=3 &&Espada.mag<6 && Osc.mag<2 && u>=80){
+         if(oatk>1 && oatk<=2 && Osc.mag>0 && Lanza.mag<4 && u>=80){
+         odef=1;
          Lanza.mag += (4-jugAmag);
-         Espada.mag += (6-jugAmag);
-         Cetro.mag += (8-jugAmag);
-         Osc.mag += (6 - Osc.mag);
          Lanza.vit += random(1,3);
+         u=0;
+         textArma=8;
+         odef=0;
+         }
+         
+         else
+         
+         if(oatk>=0 && oatk<=3 &&Espada.mag<6 && Osc.mag<2 && u>=80){
+         Espada.mag += (6-jugAmag);
+         Osc.mag += (6 - Osc.mag);
          Espada.vit += random(1,3);
-         Cetro.vit += random(1,3);
          u=0;
          textArma=9;
          odef=0;
          }
 
+         else
+         
+         if(oatk>=0 && oatk<=3 &&Cetro.mag<8 && Osc.mag<2 && u>=80){
+         Cetro.mag += (8-jugAmag);
+         Osc.mag += (6 - Osc.mag);
+         Cetro.vit += random(1,3);
+         u=0;
+         textArma=9;
+         odef=0;
+         }
+         
+         else
+         
+         if(oatk>=0 && oatk<=3 &&Lanza.mag<4 && Osc.mag<2 && u>=80){
+         Lanza.mag += (4-jugAmag);
+         Osc.mag += (6 - Osc.mag);
+         Lanza.vit += random(1,3);
+         u=0;
+         textArma=9;
+         odef=0;
+         }
          
      }
     }
