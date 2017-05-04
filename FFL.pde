@@ -6,6 +6,9 @@ AudioPlayer musica2;
 AudioPlayer musica3;
 AudioPlayer reaper1;
 AudioPlayer reaper2;
+AudioPlayer atkatk;
+AudioPlayer atkmed;
+AudioPlayer atkdef;
 
 
 Lux Espada;
@@ -67,6 +70,9 @@ minim = new Minim(this);
   musica3 = minim.loadFile("juego.mp3");
   reaper1 = minim.loadFile("reaper_1.mp3");
   reaper2 = minim.loadFile("reaper_2.mp3");
+  atkatk = minim.loadFile("attack_1.mp3");
+  atkdef = minim.loadFile("attack_2.mp3");
+  atkmed = minim.loadFile("attack_3.mp3");
 
 introbg= loadImage("Fondo1.jpg");
 titulo= loadImage("Titulo.png");
@@ -127,12 +133,18 @@ if(pantalla==2)
   dibujar();
   if(textArma==1){
   image(medr,345,80);
+  atkmed.play();
+  //atkmed.rewind();
   }
   if(textArma==2){
   image(impactr,375,v=v+20);
+  atkatk.play();
+  //atkatk.rewind();
   }
   if(textArma==3){
   image(dfcr,345,80);
+  atkdef.play();
+  //atkdef.rewind();
   }
   if(textArma==4){
   image(impactr,375,v=v+20);
@@ -574,7 +586,16 @@ text("Bloquea un ataque.",100,563);
 
 void mouseClicked(){
     if(mouseX>=300 && mouseX<=330 && mouseY >=510 && mouseY<=525 && u>=80){
-      //textArma=0;
+      
+      if(u>=60){
+         
+           atkdef.pause();
+           atkatk.pause();
+           atkmed.pause();
+           atkdef.rewind();
+           atkatk.rewind();
+           atkmed.rewind();
+       }
   {
     
     if(Lanza.mag>0 && arma==3 && u>=80){
@@ -735,6 +756,16 @@ void mouseClicked(){
     }
     
     if(mouseX>=300 && mouseX<=330 && mouseY >=550 && mouseY<=565 && u>=80){
+      
+      if(u>=60){
+         
+           atkdef.pause();
+           atkatk.pause();
+           atkmed.pause();
+           atkdef.rewind();
+           atkatk.rewind();
+           atkmed.rewind();
+       }
     {
       
       if(Lanza.mag>1 && arma==3 && u>=80){
@@ -822,6 +853,7 @@ void mouseClicked(){
       Osc.mag += (6 - Osc.mag);
       def=1;
       u=0;
+
       textArma=6;
       def=0;
     }
@@ -850,6 +882,16 @@ void mouseClicked(){
     }
     
      if(mouseX>=300 && mouseX<=330 && mouseY >=590 && mouseY<=605 && u>=80){
+       
+       if(u>=60){
+         
+           atkdef.pause();
+           atkatk.pause();
+           atkmed.pause();
+           atkdef.rewind();
+           atkatk.rewind();
+           atkmed.rewind();
+       }
              
        if(oatk>0 && oatk<=1 && Osc.mag>0 && Espada.mag<6 && u>=80){
          Espada.vit = jugAvit - Osc.atk;
