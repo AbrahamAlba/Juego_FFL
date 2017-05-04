@@ -4,6 +4,9 @@ Minim minim;
 AudioPlayer musica1;
 AudioPlayer musica2;
 AudioPlayer musica3;
+AudioPlayer reaper1;
+AudioPlayer reaper2;
+
 
 Lux Espada;
 Lux Cetro;
@@ -14,6 +17,17 @@ PImage introbg;
 PImage titulo;
 PImage carta;
 PImage carta_;
+PImage reaper;
+PImage dfc;
+PImage med;
+PImage logbox;
+PImage esp;
+PImage cet;
+PImage lan;
+PImage impact;
+PImage impactr;
+PImage medr;
+PImage dfcr;
 int arma;
 int jugador=0;
 float oatk;
@@ -28,6 +42,9 @@ float i=0;
 int j=0;
 int k=0;
 int t=0;
+int u;
+int v;
+int w;
 String jugAnom;
 int jugAatk;
 int jugAvit;
@@ -36,11 +53,9 @@ String jugBnom;
 int jugBatk;
 int jugBvit;
 int jugBmag;
+int textArma;
 PGraphics luz;
 PGraphics oscuridad;
-PGraphics espada;
-PGraphics cetro;
-PGraphics lanza;
 
 //String ataques[]={};
 
@@ -50,11 +65,24 @@ minim = new Minim(this);
   musica1 = minim.loadFile("intro.mp3");
   musica2 = minim.loadFile("menu.mp3");
   musica3 = minim.loadFile("juego.mp3");
+  reaper1 = minim.loadFile("reaper_1.mp3");
+  reaper2 = minim.loadFile("reaper_2.mp3");
 
 introbg= loadImage("Fondo1.jpg");
 titulo= loadImage("Titulo.png");
 carta= loadImage("tarjeta1.png");
 carta_= loadImage("tarjeta2.png");
+reaper= loadImage("reaper.png");
+dfc= loadImage("defensa.png");
+med= loadImage("meditacion.png");
+logbox= loadImage("logbox.png");
+esp= loadImage("espada.png");
+cet= loadImage("cetro.png");
+lan= loadImage("lanza.png");
+impact = loadImage("impact.png");
+impactr= loadImage("impact_reaper.png");
+medr= loadImage("med_reaper.png");
+dfcr= loadImage("def_reaper.png");
 Espada = new Lux("Espada Santa", 15, 4, 6);
 Cetro = new Lux("Cetro Místico", 18, 2, 8);
 Lanza = new Lux("Lanza de Fé", 10, 6, 4);
@@ -64,11 +92,6 @@ Osc = new Lux("Oscuridad",30,3,5);
 smooth();
 luz = createGraphics(100,100);
 oscuridad = createGraphics(100,100);
-espada = createGraphics(140,221);
-cetro = createGraphics(140,221);
-lanza = createGraphics(140,221);
-//arco = createGraphics(140,221);
-//mazo = createGraphics(140,221);
 
 }
 
@@ -100,12 +123,42 @@ if(pantalla==2)
   musica2.rewind();
   background(introbg);
   juego();
+  reaper1.play();
   dibujar();
+  if(textArma==1){
+  image(medr,345,80);
+  }
+  if(textArma==2){
+  image(impactr,375,v=v+20);
+  }
+  if(textArma==3){
+  image(dfcr,345,80);
+  }
+  if(textArma==4){
+  image(impactr,375,v=v+20);
+  }
+  if(textArma==5){
+  image(dfcr,345,80);
+  }
+  if(textArma==6){
+  image(medr,345,80);
+  }
+  if(textArma==7){
+  image(impactr,375,v=v+20);
+  }
+  if(textArma==8){
+  image(dfcr,345,80);
+  }
+  if(textArma==9){
+  image(medr,345,80);
+  }
   musica3.play();
 }
 
 if(pantalla==3)
 {
+  reaper1.pause();
+  reaper1.rewind();
   musica3.pause();
   musica3.rewind();
   background(introbg);
@@ -132,29 +185,6 @@ void dibujar(){
   textSize(12);
   if(k>1){
     if(arma==0 || arma==3){
-  lanza.beginDraw();
-    lanza.background(0,0,0,0);
-    lanza.stroke(255);
-    lanza.strokeWeight(1.5);
-    lanza.noFill();
-    lanza.line(70,38,64,57);
-    lanza.line(64,57,70,65);
-    lanza.line(70,65,76,57);
-    lanza.line(76,57,70,38);
-    lanza.line(67,61,67,68);
-    lanza.line(67,68,62,68);
-    lanza.line(62,68,62,73);
-    lanza.line(62,73,67,73);
-    lanza.line(67,73,67,80);
-    lanza.line(67,80,73,80);
-    lanza.line(73,80,73,73);
-    lanza.line(73,73,78,73);
-    lanza.line(78,73,78,68);
-    lanza.line(78,68,73,68);
-    lanza.line(73,68,73,61);
-    lanza.rect(69,80,2,80);
-    lanza.ellipse(70,165,10,10);
-  lanza.endDraw();
   
   int posX=(width/2)+60;
   int posY=200;
@@ -177,32 +207,10 @@ void dibujar(){
       
     }
   
-  image(lanza,posX,posY);
+  image(lan,posX,posY);
     }
   
   if(arma==0 || arma==1){
-  cetro.beginDraw();
-    cetro.background(0,0,0,0);
-    cetro.stroke(255);
-    cetro.strokeWeight(1.5);
-    cetro.noFill();
-    cetro.ellipse(70,69,25,25);
-    cetro.line(67,43,67,47);
-    cetro.line(67,47,63,47);
-    cetro.line(63,47,63,53);
-    cetro.line(63,53,67,53);
-    cetro.line(67,53,67,57);
-    cetro.line(67,43,73,43);
-    cetro.line(73,43,73,47);
-    cetro.line(73,47,77,47);
-    cetro.line(77,47,77,53);
-    cetro.line(77,53,73,53);
-    cetro.line(73,53,73,57);
-    cetro.rect(69,83,2,62);
-    cetro.rect(64,145,12,7);
-    cetro.rect(66,152,8,6);
-    cetro.rect(68,159,4,3);
-  cetro.endDraw();
   
   int posX=161;
   int posY=200;
@@ -225,39 +233,10 @@ void dibujar(){
         //resultado=0;
        }
   
-  image(cetro,posX,posY);
+  image(cet,posX,posY);
   }
   
   if(arma==0 || arma==2){
-  espada.beginDraw();
-    espada.background(0,0,0,0);
-    espada.stroke(255);
-    espada.strokeWeight(1.5);
-    espada.noFill();
-    espada.ellipse(94,134,11,11);
-    espada.ellipse(46,134,11,11);
-    espada.line(65,58,65,130);
-    espada.line(75,58,75,130);
-    espada.line(65,58,70,47);
-    espada.line(75,58,70,47);
-    espada.line(51,130,89,130);
-    espada.line(51,130,51,136);
-    espada.line(89,130,89,136);
-    espada.line(67,136,67,158);
-    espada.line(74,136,74,158);
-    espada.line(67,158,56,158);
-    espada.line(74,158,84,158);
-    espada.line(56,164,67,164);
-    espada.line(84,164,74,164);
-    espada.line(67,164,67,177);
-    espada.line(74,164,74,177);
-    espada.line(67,177,74,177);
-    espada.line(89,136,74,136);
-    espada.line(51,136,67,136);
-    espada.line(56,158,56,164);
-    espada.line(84,158,84,164);
-    
-  espada.endDraw();
   
   int posX=(width/2)-89;
   int posY=195;
@@ -280,7 +259,7 @@ void dibujar(){
         //resultado=0;
        }
   
-  image(espada,posX,posY);
+  image(esp,posX,posY);
   }  
 }
   
@@ -332,7 +311,7 @@ if(pantalla==2)
         luz.ellipse(50,50,lc,lc);
       luz.endDraw();
   
-  image(luz,0,0);
+  //image(luz,0,0);
   
   popMatrix();
   popMatrix();
@@ -347,7 +326,7 @@ void intro(){
   background(introbg);
     tint(255,t);
   image(titulo,0,0);
-    tint(255,random(100,255));
+    //tint(255,random(100,255));
  if(t>255)
  {
    fill(255, 255, 255,i++);
@@ -358,7 +337,8 @@ void intro(){
 if (keyPressed){
   if (key == ENTER)
     t=t+255;
-    if(i>10) 
+    
+    if(i>=100) 
       if (pantalla == 0)
     {
       t=255;
@@ -438,22 +418,139 @@ void seleccion(){
 
 
 void juego(){
+  u++;
 oatk = random(0,3);
 image(carta,346,495);
 image(carta_,346,75);
+image(logbox,0,(height/2)-40);
+//image(reaper,225,20);
 dibujar();
+image(reaper,225,20);
 text("VIT",500,250);
 text("MAG",500,280);
 text(Osc.vit,540,250);
 text(Osc.mag,540,280);
 noFill();
-//text(oatk,10,200);
+text(oatk,10,200);
 rect(300,510,30,15);
 text("ATK",303,523);
 rect(300,550,30,15);
 text("DEF",303,563);
 rect(300,590,30,15);
 text("MED",303,603);
+
+
+//SECCIÓN DE TEXTO QUE APARECE CUANDO SE REALIZA UNA ACCIÓN
+
+ if(mouseX>=300 && mouseX<=330 && mouseY >=510 && mouseY<=525){
+    if(Lanza.mag<=0 && arma==3){
+    text("No puedes usar Ataque. Puntos de magia insuficientes.",10,(height/2)+40);
+    }
+    
+    if(Espada.mag<=1 && arma==2){
+    text("No puedes usar Ataque. Puntos de magia insuficientes.",10,(height/2)+40);
+    }
+    
+    if(Cetro.mag<=0 && arma==1){
+    text("No puedes usar Ataque. Puntos de magia insuficientes.",10,(height/2)+40);
+    }
+  }
+  
+  if(mouseX>=300 && mouseX<=330 && mouseY >=550 && mouseY<=565){
+      if(Lanza.mag<=1 && arma==3){
+        text("No puedes usar Defensa. Puntos de magia insuficientes.",10,(height/2)+40);
+      }
+      
+      if(Espada.mag<=0 && arma==2){
+        text("No puedes usar Defensa. Puntos de magia insuficientes.",10,(height/2)+40);
+      }
+      
+      if(Cetro.mag<=1 && arma==1){
+        text("No puedes usar Defensa. Puntos de magia insuficientes.",10,(height/2)+40);
+      }
+  }
+  
+  if(mouseX>=300 && mouseX<=330 && mouseY >=590 && mouseY<=605){
+    
+       if(Lanza.mag>0 && arma==3 /*Lanza.vit==10 && Espada.vit==15 && Cetro.vit==18*/){
+       text("No puedes usar Meditación. Magia llena.",10,(height/2)+40);
+       }
+       
+       if(Espada.mag>0 && arma==2 /*Lanza.vit==10 && Espada.vit==15 && Cetro.vit==18*/){
+       text("No puedes usar Meditación. Magia llena.",10,(height/2)+40);
+       }
+       
+       if(Cetro.mag>0 && arma==1 /*Lanza.vit==10 && Espada.vit==15 && Cetro.vit==18*/){
+       text("No puedes usar Meditación. Magia llena.",10,(height/2)+40);
+       }
+  }
+  
+     if(textArma==1){
+       text("Tu oponente meditó.",10,height/2);
+       text("Infligiste daño",10,(height/2)+20);
+       image(impact,375,w=w-20);
+          if(w<=160){
+       w=160;
+     }
+     }
+   
+     if(textArma==2){
+     text("Tu oponente Atacó.",10,height/2);
+     text("Ambos reciben daño.",10,(height/2)+20);
+     image(impact,375,w=w-20);
+     if(w<=160){
+       w=160;
+     }
+     }
+   
+     if(textArma==3){
+     text("Tu oponente se defendió.",10,height/2);
+     text("Tu oponente no recibió ningún daño.",10,(height/2)+20);
+     image(impact,375,w=w-20);
+        if(w<=160){
+       w=160;
+     }
+     }
+     
+     if(textArma==4){
+     text("Tu oponente atacó.",10,height/2);
+     text("No recibiste ningún daño.",10,(height/2)+20);
+     image(dfc,345,(width/2)+90);
+     }
+     
+     if(textArma==5){
+      text("Tu oponente se defendió.",10,height/2);
+      text("Ambos quedan intactos.",10,(height/2)+20);
+      image(dfc,345,(width/2)+90);
+     }
+     
+     if(textArma==6){
+     text("Tu oponente meditó.",10,height/2);
+     text("Ambos quedan intactos",10,(height/2)+20);
+     image(dfc,345,(width/2)+90);
+     }
+     
+     if(textArma==7){
+     text("Tu oponente atacó. Recibiste daño.",10,height/2);
+     text("Mágia y Vitalidad recuperada",10,(height/2)+20);
+     image(med,345,(width/2)+90);
+     }
+     
+     if(textArma==8){
+     text("Tu oponente se defendió.",10,(height/2)-20);
+     text("Mágia y Vitalidad recuperada",10,height/2);
+     text("Ambos quedan intactos.",10,(height/2)+20);
+     image(med,345,(width/2)+90);
+     }
+     
+     if(textArma==9){
+     text("Tu oponente meditó.",10,height/2);
+     text("Mágia y Vitalidad recuperada",10,(height/2)+20);
+     image(med,345,(width/2)+90);
+     }
+   
+   
+
 if(mouseX>=300 && mouseX<=330 && mouseY >=510 && mouseY<=525){
       fill(255);
       text("Inflige daño.",100,523);
@@ -464,43 +561,90 @@ text("Bloquea un ataque.",100,563);
  }
       if(mouseX>=300 && mouseX<=330 && mouseY >=590 && mouseY<=605){
     text("Recupera Magia y Vitaliad",100,603);
-      } 
- 
+      }  
+      
+      text(u,10,20);
  }
+ 
+ 
+ /////////
+ /////////
+ /////////
       
 
 void mouseClicked(){
-    if(mouseX>=300 && mouseX<=330 && mouseY >=510 && mouseY<=525){
+    if(mouseX>=300 && mouseX<=330 && mouseY >=510 && mouseY<=525 && u>=80){
+      //textArma=0;
   {
-    if(jugAmag==0){
-    println("No puedes usar Ataque. Puntos de magia insuficientes.");
-    }
     
-    if(jugAmag>0){
-        Lanza.mag = jugAmag-1;
-        Espada.mag = jugAmag-2; 
-        Cetro.mag = jugAmag-1; 
+    if(Lanza.mag>0 && arma==3 && u>=80){
+        Lanza.mag = jugAmag-1;  
       }
+      
+      if(Espada.mag>1 && arma==2 && u>=80){
+        Espada.mag = jugAmag-2; 
+      }
+      
+      if(Cetro.mag>0 && arma==1 && u>=80){
+        Cetro.mag = jugAmag-1;
+      }
+     
     
-    if(oatk>2 && oatk<=3 && odef==0 && jugAmag>0 && Osc.mag>=0 && Osc.mag <2){
+    if(oatk>0 && oatk<=3 && odef==0 && Espada.mag>1 && Osc.mag <2 && arma==2 && u>=80){
+      textArma=0;
     Osc.vit= Osc.vit - jugAatk;
     Osc.mag += (6-Osc.mag);
+    w=600;
+    u=0;
+    textArma=1;
     if(Osc.vit<=0){
       pantalla=3;
       resultado=2;
       }
-    println("Tu oponente meditó. Infligiste daño");
     }
     
     else
     
-    if(oatk>0 && oatk<=1 && jugAmag>0 && Osc.mag>0){
+    if(oatk>0 && oatk<=3 && odef==0 && Cetro.mag>0 && Osc.mag <2 && arma==1 && u>=80){
+      textArma=0;
+    Osc.vit= Osc.vit - jugAatk;
+    Osc.mag += (6-Osc.mag);
+    w=600;
+    u=0;
+    textArma=1;
+    if(Osc.vit<=0){
+      pantalla=3;
+      resultado=2;
+      }
+    }
+    
+    else
+    
+    if(oatk>0 && oatk<=3 && odef==0 && Lanza.mag>0 && Osc.mag <2 && arma==3 && u>=80){
+      textArma=0;
+    Osc.vit= Osc.vit - jugAatk;
+    Osc.mag += (6-Osc.mag);
+    w=600;
+    u=0;
+    textArma=1;
+    if(Osc.vit<=0){
+      pantalla=3;
+      resultado=2;
+      }
+    }
+    
+    else
+        
+    if(oatk>=0 && oatk<=2 && Espada.mag>1 && Osc.mag>0 && arma==2 && u>=80){
+      textArma=0;
     Osc.mag= Osc.mag-1;
     Osc.vit= Osc.vit-1;
-    Lanza.vit = jugAvit-1;
     Espada.vit = jugAvit-1;
-    Cetro.vit = jugAvit-1;
-    if(Lanza.vit <=0 && Espada.vit <=0 && Cetro.vit <=0){
+    w=600;
+    v=160;
+    u=0;
+    textArma=2;
+    if(Espada.vit <=0){
       pantalla=3;
       resultado=1;
       }
@@ -509,77 +653,189 @@ void mouseClicked(){
       pantalla=3;
       resultado=2;
       }
-    println("Tu oponente Atacó.");
-    println("Ambos reciben daño.");
+    }
+    
+    else
+        
+    if(oatk>=0 && oatk<=2 && Cetro.mag>0 && Osc.mag>0 && arma==1 && u>=80){
+      textArma=0;
+    Osc.mag= Osc.mag-1;
+    Osc.vit= Osc.vit-1;
+    Cetro.vit = jugAvit-1;
+    w=600;
+    v=160;
+    u=0;
+    textArma=2;
+    if(Cetro.vit <=0){
+      pantalla=3;
+      resultado=1;
+      }
+      
+      if(Osc.vit<=0){
+      pantalla=3;
+      resultado=2;
+      }
     }
     
     else
     
-    if(oatk>1 && oatk<=2 && jugAmag>0 && Osc.mag>0){
+    if(oatk>=0 && oatk<=2 && Lanza.mag>0 && Osc.mag>0 && arma==3 && u>=80){
+      textArma=0;
+    Osc.mag= Osc.mag-1;
+    Osc.vit= Osc.vit-1;
+    Lanza.vit = jugAvit-1;
+    w=600;
+    v=160;
+    u=0;
+    textArma=2;
+    if(Lanza.vit <=0){
+      pantalla=3;
+      resultado=1;
+      }
+      
+      if(Osc.vit<=0){
+      pantalla=3;
+      resultado=2;
+      }
+    }
+    
+    else
+    
+    if(oatk>2 && oatk<=3 && Espada.mag>1 && Osc.mag>0 && arma==2 && u>=80){
+      textArma=0;
     odef=1;
     Osc.mag= Osc.mag-1;
-    println("Tu oponente se defendió.");
-    println("Tu oponente no recibió ningún daño.");
+    w=600;
+    u=0;
+    textArma=3;
+    odef=0;
+    }
+    
+    if(oatk>2 && oatk<=3 && Cetro.mag>0 && Osc.mag>0 && arma==1 && u>=80){
+      textArma=0;
+    odef=1;
+    Osc.mag= Osc.mag-1;
+    w=600;
+    u=0;
+    textArma=3;
+    odef=0;
+    }
+    
+    if(oatk>2 && oatk<=3 && Lanza.mag>0 && Osc.mag>0 && arma==3 && u>=80){
+      textArma=0;
+    odef=1;
+    Osc.mag= Osc.mag-1;
+    w=600;
+    u=0;
+    textArma=3;
     odef=0;
     }
 
     }
     }
     
-    if(mouseX>=300 && mouseX<=330 && mouseY >=550 && mouseY<=565){
+    if(mouseX>=300 && mouseX<=330 && mouseY >=550 && mouseY<=565 && u>=80){
     {
-      if(jugAmag==0){
-        println("No puedes usar Defensa. Puntos de magia insuficientes.");
+      
+      if(Lanza.mag>1 && arma==3 && u>=80){
+        Lanza.mag = jugAmag-2;
+    def=1;
       }
       
-      if(jugAmag>0){
-        Lanza.mag = jugAmag-2;
-        Espada.mag = jugAmag-1; 
+      if(Espada.mag>0 && arma==2 && u>=80){
+        Espada.mag = jugAmag-1;
+    def=1;
+      }
+      
+      if(Cetro.mag>1 && arma==1 && u>=80){
         Cetro.mag = jugAmag-2; 
     def=1;
       }
       
-    if(oatk>=0 && oatk<=1 && jugAmag>0){
+    if(oatk>0 && oatk<=1 && Espada.mag>0 && arma==2 && u>=80){
       Osc.mag = Osc.mag-1;
-      println("Tu oponente atacó.");
-      println("No recibiste ningún daño.");
+      u=0;
+      v=160;
+      textArma=4;
       def=0;
     }
     
     else
     
-    if(oatk>1 && oatk<=2 && jugAmag>0){
+    if(oatk>0 && oatk<=1 && Cetro.mag>1 && arma==1 && u>=80){
+      Osc.mag = Osc.mag-1;
+      u=0;
+      v=160;
+      textArma=4;
+      def=0;
+    }
+    
+    else
+    
+    if(oatk>0 && oatk<=1 && Lanza.mag>1 && arma==3 && u>=80){
+      Osc.mag = Osc.mag-1;
+      u=0;
+      v=160;
+      textArma=4;
+      def=0;
+    }
+    
+    else
+    
+    if(oatk>1 && oatk<=2 && Espada.mag>0 && arma==2 && u>=80){
       Osc.mag = Osc.mag-2;
       odef=1;
       def=1;
-      println("Tu oponente se defendió.");
-      println("Ambos quedan intactos.");
+      u=0;
+      textArma=5;
       def=0;
       odef=0;
     }
     
     else
     
-    if(oatk>2 && oatk<=3 && jugAmag>0 && Osc.mag<2){
+    if(oatk>1 && oatk<=2 && Cetro.mag>1 && arma==1 && u>=80){
+      Osc.mag = Osc.mag-2;
+      odef=1;
+      def=1;
+      u=0;
+      textArma=5;
+      def=0;
+      odef=0;
+    }
+    
+    else
+    
+    if(oatk>1 && oatk<=2 && Lanza.mag>1 && arma==3 && u>=80){
+      Osc.mag = Osc.mag-2;
+      odef=1;
+      def=1;
+      u=0;
+      textArma=5;
+      def=0;
+      odef=0;
+    }
+    
+    else
+    
+    if(oatk>2 && oatk<=3 && Espada.mag>0 && arma==2 && Osc.mag<2 && u>=80){
       Osc.mag += (6 - Osc.mag);
-      println("Tu oponente meditó.");
-      println("Ambos quedan intactos");
+      u=0;
+      u=u-1;
+      textArma=6;
       def=0;
     }
     
     }
     }
     
-     if(mouseX>=300 && mouseX<=330 && mouseY >=590 && mouseY<=605){
-       
-       if(Lanza.mag>=4 && Espada.mag>=6 && Cetro.mag>=8 /*Lanza.vit==10 && Espada.vit==15 && Cetro.vit==18*/){
-       println("No puedes usar Meditación. Salud y/o Magia llenos.");
-       }
-       
-       if(oatk>=0 && oatk<=1 && Osc.mag>0 && Lanza.mag<4 && Espada.mag<6 && Cetro.mag<8){
+     if(mouseX>=300 && mouseX<=330 && mouseY >=590 && mouseY<=605 && u>=80){
+             
+       if(oatk>0 && oatk<=1 && Osc.mag>0 && Espada.mag<6 && u>=120){
          Lanza.vit = jugAvit - Osc.atk;
          Espada.vit = jugAvit - Osc.atk;
          Cetro.vit = jugAvit - Osc.atk;
+         
          if(Lanza.vit <=0 && Espada.vit <=0 && Cetro.vit <=0){
           pantalla=3;
           resultado=1;
@@ -587,41 +843,40 @@ void mouseClicked(){
          Lanza.mag += (4-jugAmag);
          Espada.mag += (6-jugAmag);
          Cetro.mag += (8-jugAmag);
-         Lanza.vit += random(1,2);
-         Espada.vit += random(1,2);
-         Cetro.vit += random(1,2);
-         println("Tu oponente atacó. Recibiste daño.");
-         println("Mágia y Vitalidad recuperada");
+         Lanza.vit += random(1,3);
+         Espada.vit += random(1,3);
+         Cetro.vit += random(1,3);
+         u=0;
+         textArma=7;
          }
          
          else
          
-         if(oatk>1 && oatk<=2 && Osc.mag>0 && Lanza.mag<4 && Espada.mag<6 && Cetro.mag<8){
+         if(oatk>1 && oatk<=2 && Osc.mag>0 && Espada.mag<6 && u>=80){
          odef=1;
          Lanza.mag += (4-jugAmag);
          Espada.mag += (6-jugAmag);
          Cetro.mag += (8-jugAmag);
-         Lanza.vit += random(1,2);
-         Espada.vit += random(1,2);
-         Cetro.vit += random(1,2);
-         println("Tu oponente se defendió.");
-         println("Mágia y Vitalidad recuperada");
-         println("Ambos quedan intactos.");
+         Lanza.vit += random(1,3);
+         Espada.vit += random(1,3);
+         Cetro.vit += random(1,3);
+         u=0;
+         textArma=8;
          odef=0;
          }
          
          else
          
-         if(oatk>2 && oatk<=3 && Lanza.mag<4 && Espada.mag<6 && Cetro.mag<8 && Osc.mag<2){
+         if(oatk>=0 && oatk<=3 &&Espada.mag<6 && Osc.mag<2 && u>=80){
          Lanza.mag += (4-jugAmag);
          Espada.mag += (6-jugAmag);
          Cetro.mag += (8-jugAmag);
          Osc.mag += (6 - Osc.mag);
-         Lanza.vit += random(1,2);
-         Espada.vit += random(1,2);
-         Cetro.vit += random(1,2);
-         println("Tu oponente meditó.");
-         println("Mágia y Vitalidad recuperada");
+         Lanza.vit += random(1,3);
+         Espada.vit += random(1,3);
+         Cetro.vit += random(1,3);
+         u=0;
+         textArma=9;
          odef=0;
          }
 
@@ -636,21 +891,24 @@ void fin(){
   arma=0;
   fill(255, 200, 100);
   if(resultado==1){
+    reaper2.play();
     textSize(32);
-    text("¡PERDISTE!", width/2, height/2);
+    text("¡PERDISTE!", (width/2)-50, height/2);
 
   }
   
   else
   if(resultado==2){
     textSize(32);
-    text("¡GANASTE!", width/2, height/2);
+    text("¡GANASTE!", (width/2)-50, height/2);
 
   }
   
 if (keyPressed){
   if (key == ' ')
     {
+      reaper2.pause();
+      reaper2.rewind();
      Espada.vit=15;
      Espada.mag=6;
      Cetro.vit=18;
@@ -663,6 +921,7 @@ if (keyPressed){
       j=0;
     pantalla=0;
     t=0;
+    textArma=0;
     }
 }
 }
